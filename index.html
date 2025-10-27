@@ -71,6 +71,49 @@
             opacity: 0.8;
         }
 
+        .display-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 800px;
+        }
+
+        .display-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .display-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+        }
+
+        .display-box-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .display-box-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .display-box-content {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -87,6 +130,16 @@
             
             .time-value {
                 font-size: 2rem;
+            }
+
+            .display-boxes {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .display-box {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -110,6 +163,39 @@
             <div class="time-unit">
                 <div class="time-value" id="seconds">00</div>
                 <div class="time-label">Seconds</div>
+            </div>
+        </div>
+        
+        <div class="display-boxes">
+            <div class="display-box">
+                <div class="display-box-icon">🚀</div>
+                <div class="display-box-title">Innovation</div>
+                <div class="display-box-content">Cutting-edge solutions for tomorrow's challenges</div>
+            </div>
+            <div class="display-box">
+                <div class="display-box-icon">⚡</div>
+                <div class="display-box-title">Performance</div>
+                <div class="display-box-content">Lightning-fast results with optimized efficiency</div>
+            </div>
+            <div class="display-box">
+                <div class="display-box-icon">🛡️</div>
+                <div class="display-box-title">Security</div>
+                <div class="display-box-content">Enterprise-grade protection for your data</div>
+            </div>
+            <div class="display-box">
+                <div class="display-box-icon">🌐</div>
+                <div class="display-box-title">Global</div>
+                <div class="display-box-content">Worldwide accessibility and seamless connectivity</div>
+            </div>
+            <div class="display-box">
+                <div class="display-box-icon">🎯</div>
+                <div class="display-box-title">Precision</div>
+                <div class="display-box-content">Accurate targeting with intelligent algorithms</div>
+            </div>
+            <div class="display-box">
+                <div class="display-box-icon">💎</div>
+                <div class="display-box-title">Quality</div>
+                <div class="display-box-content">Premium experience with attention to detail</div>
             </div>
         </div>
     </div>
