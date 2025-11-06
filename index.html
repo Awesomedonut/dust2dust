@@ -87,6 +87,7 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .display-box:hover {
@@ -142,6 +143,92 @@
                 padding: 1.5rem;
             }
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.6);
+        }
+
+        .modal-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 2rem;
+                width: 95%;
+            }
+            
+            .modal-icon {
+                font-size: 5rem;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .modal-description {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -167,36 +254,45 @@
         </div>
         
         <div class="display-boxes">
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('🚀', 'Innovation', 'Revolutionary breakthrough technology that transforms the way we approach complex problems. Our cutting-edge solutions leverage artificial intelligence, machine learning, and advanced algorithms to deliver unprecedented results for tomorrow\'s most challenging scenarios.')">
                 <div class="display-box-icon">🚀</div>
                 <div class="display-box-title">Innovation</div>
                 <div class="display-box-content">Cutting-edge solutions for tomorrow's challenges</div>
             </div>
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('⚡', 'Performance', 'Unmatched speed and efficiency powered by state-of-the-art optimization techniques. Our performance-driven architecture ensures lightning-fast response times, seamless scalability, and resource optimization that adapts to your growing needs.')">
                 <div class="display-box-icon">⚡</div>
                 <div class="display-box-title">Performance</div>
                 <div class="display-box-content">Lightning-fast results with optimized efficiency</div>
             </div>
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('🛡️', 'Security', 'Military-grade encryption and enterprise-level protection protocols safeguard your most sensitive data. Our comprehensive security framework includes multi-factor authentication, end-to-end encryption, and real-time threat detection to ensure complete peace of mind.')">
                 <div class="display-box-icon">🛡️</div>
                 <div class="display-box-title">Security</div>
                 <div class="display-box-content">Enterprise-grade protection for your data</div>
             </div>
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('🌐', 'Global', 'Worldwide infrastructure spanning multiple continents with 99.9% uptime guarantee. Our global network ensures seamless connectivity, reduced latency, and consistent performance regardless of your geographic location or time zone.')">
                 <div class="display-box-icon">🌐</div>
                 <div class="display-box-title">Global</div>
                 <div class="display-box-content">Worldwide accessibility and seamless connectivity</div>
             </div>
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('🎯', 'Precision', 'Advanced targeting algorithms powered by deep learning and predictive analytics. Our precision-focused approach delivers accurate results with minimal margin of error, ensuring every decision is backed by comprehensive data analysis and intelligent insights.')">
                 <div class="display-box-icon">🎯</div>
                 <div class="display-box-title">Precision</div>
                 <div class="display-box-content">Accurate targeting with intelligent algorithms</div>
             </div>
-            <div class="display-box">
+            <div class="display-box" onclick="openModal('💎', 'Quality', 'Uncompromising commitment to excellence with meticulous attention to every detail. Our quality assurance process includes rigorous testing, continuous monitoring, and iterative improvements to deliver a premium experience that exceeds expectations.')">
                 <div class="display-box-icon">💎</div>
                 <div class="display-box-title">Quality</div>
                 <div class="display-box-content">Premium experience with attention to detail</div>
             </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-icon" id="modal-icon"></div>
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-description" id="modal-description"></div>
         </div>
     </div>
 
@@ -227,6 +323,24 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        function openModal(icon, title, description) {
+            document.getElementById('modal-icon').textContent = icon;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>
