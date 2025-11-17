@@ -101,7 +101,8 @@
 
         .item-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 4rem;
             max-width: 1000px;
@@ -342,7 +343,7 @@
             </div>
         </div>
 
-        <div class="character-grid">
+        <div class="item-grid">
             <div class="character-card" onclick="openModal('Item A', 'Category Alpha', 'Revolutionary breakthrough technology that transforms the way we approach complex problems. Our cutting-edge solutions leverage artificial intelligence and advanced algorithms.', 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop')">
                 <div class="character-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop');"></div>
                 <div class="character-info">
